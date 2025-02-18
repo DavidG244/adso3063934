@@ -30,6 +30,13 @@ $(function() {
         }
         countRemains()
     })
+
+    $('body').on('click', 'article button', function(){
+        $(this).closest('article').remove()
+        countTasks()
+        countRemains()
+    })
+
 })
 // Count Tasks
 function countTasks(){
@@ -38,7 +45,8 @@ function countTasks(){
 }
 
 function countRemains(){
-    $('.num-remains').text(Math.abs($('.checked').length - $('article').length))
-    $('.title-remains').text($('.checked').length > 1 ? 'Remains' : 'Remain')
+    $remain = Math.abs($('.checked').length - $('article').length)
+    $('.num-remains').text($remain)
+    $('.title-remains').text($remain > 1 ? 'Remains' : 'Remain')
 }
 
