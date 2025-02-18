@@ -1,4 +1,7 @@
 $(function() {
+    // Count Tasks
+    countTasks()
+    countRemains()
     // Add task
     $('footer').on('click', '#add', function(){
         if($('#input-task').val().length > 0) {
@@ -10,18 +13,32 @@ $(function() {
             </article>'
             $('section.list').append($task)
             $('#input-task').val('')
+            countTasks()
+            countRemains()
         }
         else {
             alert('please! Enter a Task')
         }
     })
     // Toggle task (Remain/Done)
-    $('article').on('click', 'input[type=checkbox]', function() {
+    $('body').on('click', 'input[type=checkbox]', function() {
         // If checked
         if ($(this).prop('checked')){
-            alert('Yes, Checked')
+           $(this).parent().addClass('checked')
         } else {
-            alert('No, No checked')
-        };
+            $(this).parent().removeClass('checked')
+        }
+        countRemains()
     })
 })
+// Count Tasks
+function countTasks(){
+    $('.num-tasks').text($('article').length)
+    $('.title-tasks').text($('article').length > 1 ? 'Tasks' : 'Task')
+}
+
+function countRemains(){
+    $('.num-remains').text(Math.abs($('.checked').length - $('article').length))
+    $('.title-remains').text($('.checked').length > 1 ? 'Remains' : 'Remain')
+}
+
