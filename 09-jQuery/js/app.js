@@ -1,4 +1,5 @@
 $(function() {
+    // Add task
     $('footer').on('click', '#add', function(){
         if($('#input-task').val().length > 0) {
 
@@ -13,5 +14,14 @@ $(function() {
         else {
             alert('please! Enter a Task')
         }
+    })
+    // Toggle task (Remain/Done)
+    $('article').on('click', 'input[type=checkbox]', function() {
+        // If checked
+        if ($(this).prop('checked')){
+            alert('Yes, Checked')
+        } else {
+            alert('No, No checked')
+        };
     })
 })
