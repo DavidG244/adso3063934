@@ -93,7 +93,7 @@ main {
                 cursor: pointer;
                 justify-content: center;
                 align-items: center;
-                border-radius: 0 0.4rem 0.4rem 0;
+                border-radius: 0 0rem 0rem 0;
                 font-size: 1.4rem;
                 color: white;
                 width: 50px;
@@ -101,4 +101,7 @@ main {
             }
         }
     
+}
+#ñema{
+    background-color: red;
 }
