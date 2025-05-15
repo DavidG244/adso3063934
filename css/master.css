@@ -297,8 +297,8 @@ body.html {
 }
 
 body.jquery {
-    background-color: #0868AC;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23187ec6' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%233492d4' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%2365a2ce' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%238fb4ce' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23b4c6d3' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23d4dade' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23EEE' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
+    background-color: #3057FF;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%23666dff' points='800 100 0 200 0 800 1600 800 1600 200'/%3E%3Cpolygon fill='%238884ff' points='800 200 0 400 0 800 1600 800 1600 400'/%3E%3Cpolygon fill='%23a59bff' points='800 300 0 600 0 800 1600 800 1600 600'/%3E%3Cpolygon fill='%23beb3ff' points='1600 800 800 400 0 800'/%3E%3Cpolygon fill='%23d5ccff' points='1280 800 800 500 320 800'/%3E%3Cpolygon fill='%23eae5ff' points='533.3 800 1066.7 800 800 600'/%3E%3Cpolygon fill='%23FFFFFF' points='684.1 800 914.3 800 800 700'/%3E%3C/g%3E%3C/svg%3E");
     background-attachment: fixed;
     background-size: cover;
 }
@@ -321,7 +321,7 @@ body.jquery {
         transition: all 0.2s ease-in;
 
         span {
-            background-color: #0868ac;
+            background-color: #3057FF;
             border: 2px solid #fff9;
             border-radius: 50%;
             color: #fff9;
