@@ -6,6 +6,15 @@
     <title>02- ready</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/master.css">
+    <style>
+    .ready {
+        background-color: #3057FF;
+        border-radius: 0.2rem;
+        color: #152115;
+        padding: 0.6rem;
+        margin: 2rem auto;
+    }        
+    </style>
 </head>
 <body class="jquery">
     <nav class="nav">
@@ -19,8 +28,22 @@
             <h2>Execute code when the DOM is fully loaded.</h2>
         </header>
         <section class="section">
-            
+            <p class="ready"></p>
         </section>
     </main>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        // Large Way
+        $(document).ready(function () {
+            $('.ready').text('DOM Loeaded 💛')
+        });
+        // ShortHand
+        $(function(){
+            alert('DOM Loaded 💛')
+        })
+        $(() => {
+            console.log('DOM Loaded 💛')
+        })
+    </script>
 </body>
 </html>
