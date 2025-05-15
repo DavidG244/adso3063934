@@ -6,6 +6,15 @@
     <title>01- Install</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/master.css">
+    <style>
+    .install {
+        background-color: #73b873;
+        border-radius: 0.2rem;
+        color: #152115;
+        padding: 0.6rem;
+        margin: 2rem auto;
+    }        
+    </style>
 </head>
 <body class="jquery">
     <nav class="nav">
@@ -25,7 +34,9 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            alert()
+           $('.install').ready(function(){
+            $('.install').text('✅ jQuery Installed Success')
+           })
         });
     </script>
 
