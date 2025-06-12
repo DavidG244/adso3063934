@@ -63,7 +63,7 @@
                 <button class="set-attr">Set Attribute</button>
                 <button class="get-attr">Get Attribute</button>
                 <button class="set-value">Set Value</button>
-                <button class="get-value">Get Attribute</button>
+                <button class="get-value">Get Value</button>
             </div>
         </section>
     </main>
@@ -80,7 +80,7 @@
                 $('.text-area').attr('rows', '20')
             })
             $('section').on('click', '.set-value', function (){
-                $('.text-area').attr()
+                $('.text-area').val('Memento mori')
             })
             
 
@@ -95,7 +95,7 @@
                 alert($('.text-area').attr('rows'))
             })
             $('section').on('click', '.get-value', function(){
-                alert($('.text-area').attr())
+                alert($('.text-area').val())
             })
         });
     </script>
