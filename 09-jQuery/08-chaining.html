@@ -6,6 +6,39 @@
     <title>08- chaining</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/master.css">
+    <style>
+        button.btn{
+            display: flex;
+            cursor: pointer;
+            background-color: #fff9;
+            border: none;
+            margin: 1rem auto;
+            border-radius: 0.4rem;
+            padding: 0.8rem 1.2rem;
+            transition: transform 0.2s ease-in;
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+         article.area {
+            background: url(/imagen/paisaje.jpg) no-repeat center center;
+            background-size: cover;
+            border-radius: 0.4rem;
+            border: 2px solid #fff;
+            overflow: hidden;
+            height: 300px;
+            margin: 2rem auto;
+            position: relative;
+            width: 300px;
+
+            img.character {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+            }
+            
+        }
+    </style>
 </head>
 <body class="jquery">
     <nav class="nav">
@@ -18,9 +51,22 @@
             <h1>08- chaining</h1>
             <h2>Chain multiple jQuery methods for concise code.</h2>
         </header>
-        <section class="section">
-            
-        </section>
+       <section class="section">
+            <button class="btn">Animate</button>
+             <article class="area">
+            <img class="character" src="/imagen/saitama.png">
+         </section>
     </main>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script>
+        $(document).ready(function (){
+            $('.btn').click(function(){
+                $('.character').animate({'left': '150px'})
+                                .animate({'top': '130px'})
+                                .animate({'left': '10px'})
+                                .animate({'top': '10px'})
+            })
+        })
+    </script>
 </body>
 </html>
