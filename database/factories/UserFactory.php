@@ -23,15 +23,26 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $gender = fake()->randomElement(['male', 'female']);
+        $name = ($gender == 'female') ? fake()->firstNameFemale() : fake()->firstNameMale();
+
+        ($gender == 'female') ? $g = 'women' : $g = 'men';
+        $id = fake()->numerify('75######');
+        $rnd = fake()->numberBetween(1, 99);
+        copy('https://randomuser.me/api/portraits/'.$g.'/'.$rnd.'.jpg', public_path('images/'.$id.'.png'));
+        $email = strtolower($name).fake()->numerify('###').'@example.com';
+
+
         return [
-            'document' => fake()->numerify('75######'),
-            'fullname' => fake()->firstName()." ".fake()->lastName(),
-            'gender' => fake()->randomElement(['male', 'female']),
-            'birthdate' => fake()->date(),
+            'document' => $id,
+            'fullname' => $name . " " . fake()->lastName(),
+            'gender' => $gender,
+            'birthdate' => fake()->dateTimeBetween('1977-01-01', '2007-12-31'),
+            'photo' => $id.'.png',
+            'email' => $email,
             'phone' => fake()->numerify('310#######'),
-            'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('12345'),
             'remember_token' => Str::random(10),
         ];
     }
