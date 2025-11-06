@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use League\CommonMark\Reference\Reference;
 
 return new class extends Migration
 {
@@ -16,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-            //->onDelete('cascade');
+                    ->references('id')
+                    ->on('users');
+                    //->onDelete('cascade');
             $table->unsignedBigInteger('pet_id');
             $table->foreign('pet_id')
-                ->references('id')
-                ->on('pets');
-            //->onDelete('cascade');
+                    ->references('id')
+                    ->on('pets');
+                    //->onDelete('cascade');   
             $table->timestamps();
         });
     }

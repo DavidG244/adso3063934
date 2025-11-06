@@ -23,11 +23,11 @@ class User extends Authenticatable
         'gender',
         'birthdate',
         'photo',
-        'gender',
-        'gender',
+        'phone',
+        'email',
         'password',
         'active',
-        'role'
+        'rol'
     ];
 
     /**
@@ -52,10 +52,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    // RelationShip
+
+    // RelationShips
     // User hasMany Adoptions
-    public function adoptions()
-    {
+    public function adoptions() {
         return $this->hasMany(Adoption::class);
     }
 }

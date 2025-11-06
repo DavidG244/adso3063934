@@ -13,45 +13,46 @@ class PetSeeder extends Seeder
      */
     public function run(): void
     {
-        // ORM -> Eloquent
         $pet = new Pet;
         $pet->name = 'Firulais';
-        $pet->kind = 'dog';
-        $pet->weight = 15.5;
-        $pet->age = 3;
-        $pet->breed = 'Labrador';
-        $pet->location = 'Bogotá';  
-        $pet->description = 'Friendly and playful dog looking for a loving home.';
+        $pet->kind = 'Dog';
+        $pet->weight = 7.6;
+        $pet->age = 2;
+        $pet->breed = 'French Bulldog';
+        $pet->location = 'Paris';
+        $pet->description = 'Black dog, so charming, lovely';
         $pet->save();
 
         $pet = new Pet;
-        $pet->name = 'Matias';
-        $pet->kind = 'dog';
-        $pet->weight = 3.5;
-        $pet->age = 10;
-        $pet->breed = 'Pincher Americano';
-        $pet->location = 'Cali';
-        $pet->description = 'Friendly and playful';
+        $pet->name = 'Killer';
+        $pet->kind = 'Dog';
+        $pet->weight = 18;
+        $pet->age = 6;
+        $pet->breed = 'Canne Corso';
+        $pet->location = 'Millan';
+        $pet->description = 'Explosive & , be carefully with it, Danger';
         $pet->save();
 
         $pet = new Pet;
-        $pet->name = 'Botas';
+        $pet->name = 'Pistacho';
         $pet->kind = 'Cat';
-        $pet->weight = 3.5;
+        $pet->weight = 5;
         $pet->age = 1;
-        $pet->breed = 'Siamese';
-        $pet->location = 'Cali';
-        $pet->description = 'playful and Friendly ';
+        $pet->breed = 'Mestizo';
+        $pet->location = 'Manizales';
+        $pet->description = 'Beatifull & , sweet';
         $pet->save();
 
         $pet = new Pet;
-        $pet->name = 'Looney Tunes';
-        $pet->kind = 'pig';
-        $pet->weight = 10.5;
-        $pet->age = 3;
-        $pet->breed = 'Mini pig';
-        $pet->location = 'Manizales';
-        $pet->description = 'Fresh meat';
+        $pet->name = 'Pipo';
+        $pet->kind = 'Pajaro';
+        $pet->weight = 2.5;
+        $pet->age = 2;
+        $pet->breed = 'Guacamayo';
+        $pet->location = 'Asia';
+        $pet->description = 'Colorido y amigable';
         $pet->save();
+
+
     }
 }
