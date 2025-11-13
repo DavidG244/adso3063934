@@ -17,6 +17,10 @@
 </x-app-layout>
 --}}
 
+@extends('layouts.dashboard')
+@section('title', 'Dashboard ADMIN: Larapets 🐶')
+
+@section('content')
 <h1>Dashboard</h1>
 <h2>{{ Auth::user()->fullname }}</h2>
 <h3>You're gay!</h3>
@@ -29,3 +33,4 @@
     </a>
 
 </form>
+@endsection

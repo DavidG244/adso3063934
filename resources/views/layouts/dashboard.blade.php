@@ -8,7 +8,17 @@
     <!-- Tailwind CDN for quick styling improvements (keeps functionality intact) -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-[100dvh] bg-[url(images/chanda.jpg)] bg-contain bg-cover bg-fixed bg-center bg-black w-full flex flex-col gap-4 items-center justify-center p-8">
+@php
+    if(Auth::user()->role == 'Administrator'){
+        $image = 'images/so.jpg';
+    } else {
+        $image = 'images/ra.jpg';
+    }
+        
+@endphp
+<body class="min-h-[100dvh] bg-[url('images/so.jpg')] bg-contain bg-cover bg-center bg-black w-full flex flex-col gap-4 items-center justify-center p-8 pt-20">
+    @include('layouts.navbar') 
     @yield('content')
+    @yield('js')
 </body>
 </html>
