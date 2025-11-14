@@ -26,6 +26,10 @@
                         Dashboard
                     </a>
                 </li>
+
+                {{-- Role: Administrator --}}
+                @if(Auth::user()->role == 'Administrator')
+
                 <li>
                     <a href="{{ url('users/') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
@@ -50,10 +54,11 @@
                         Module Adoptions
                     </a>
                 </li>
+                @endif
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <a href="javascript:;" class="flex gap-2"
+                        <a href="javascript:;" class="flex gap-2 items-center justify-center"
                             onclick="event.preventDefault();
             this.closest('form').submit();">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
