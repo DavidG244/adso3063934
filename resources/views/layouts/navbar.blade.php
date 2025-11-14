@@ -1,4 +1,4 @@
-<div class="navbar bg-[#000a] text-white shadow-sm sahdow-sm fixed top-0">
+<div class="navbar bg-[#000a] text-white shadow-sm sahdow-sm fixed top-0 z-10" >
     <div class="navbar-start">
         <div class="dropdown">
             <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
@@ -8,7 +8,7 @@
             </div>
             <ul
                 tabindex="-1"
-                class="menu menu-sm dropdown-content bg-[#000a]  rounded-box z-1 mt-3 w-52 p-2 shadow">
+                class="menu menu-sm dropdown-content bg-[#000a]  rounded-box z-1 mt-4 w-52 p-2 shadow">
                 <li>
                     <a href="{{ url('/') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
@@ -28,7 +28,7 @@
                 </li>
 
                 {{-- Role: Administrator --}}
-                @if(Auth::user()->role == 'Administrator')
+                @if(Auth::user()->role == 'Administrador')
 
                 <li>
                     <a href="{{ url('users/') }}">
@@ -54,13 +54,38 @@
                         Module Adoptions
                     </a>
                 </li>
+                @else
+                <li>
+                    <a href="{{ url('myprofile/') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
+                            <path d="M223,57a58.07,58.07,0,0,0-81.92-.1L128,69.05,114.91,56.86A58,58,0,0,0,33,139l89.35,90.66a8,8,0,0,0,11.4,0L223,139a58,58,0,0,0,0-82Zm-11.35,70.76L128,212.6,44.3,127.68a42,42,0,0,1,59.4-59.4l.2.2,18.65,17.35a8,8,0,0,0,10.9,0L152.1,68.48l.2-.2a42,42,0,1,1,59.36,59.44Z"></path>
+                        </svg>
+                        My Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('makedoptions/') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"" viewBox=" 0 0 256 256">
+                            <path d="M223,57a58.07,58.07,0,0,0-81.92-.1L128,69.05,114.91,56.86A58,58,0,0,0,33,139l89.35,90.66a8,8,0,0,0,11.4,0L223,139a58,58,0,0,0,0-82Zm-11.35,70.76L128,212.6,44.3,127.68a42,42,0,0,1,59.4-59.4l.2.2,18.65,17.35a8,8,0,0,0,10.9,0L152.1,68.48l.2-.2a42,42,0,1,1,59.36,59.44Z"></path>
+                        </svg>
+                        Make Adoptions
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url('myadoptions/') }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"" viewBox=" 0 0 256 256">
+                            <path d="M223,57a58.07,58.07,0,0,0-81.92-.1L128,69.05,114.91,56.86A58,58,0,0,0,33,139l89.35,90.66a8,8,0,0,0,11.4,0L223,139a58,58,0,0,0,0-82Zm-11.35,70.76L128,212.6,44.3,127.68a42,42,0,0,1,59.4-59.4l.2.2,18.65,17.35a8,8,0,0,0,10.9,0L152.1,68.48l.2-.2a42,42,0,1,1,59.36,59.44Z"></path>
+                        </svg>
+                        My Adoptions
+                    </a>
+                </li>
                 @endif
                 <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <a href="javascript:;" class="flex gap-2 items-center justify-center"
                             onclick="event.preventDefault();
-            this.closest('form').submit();">
+                                        this.closest('form').submit();">
                             <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor" viewBox="0 0 256 256">
                                 <path d="M165.66,101.66,139.31,128l26.35,26.34a8,8,0,0,1-11.32,11.32L128,139.31l-26.34,26.35a8,8,0,0,1-11.32-11.32L116.69,128,90.34,101.66a8,8,0,0,1,11.32-11.32L128,116.69l26.34-26.35a8,8,0,0,1,11.32,11.32ZM232,128A104,104,0,1,1,128,24,104.11,104.11,0,0,1,232,128Zm-16,0a88,88,0,1,0-88,88A88.1,88.1,0,0,0,216,128Z"></path>
                             </svg>
@@ -86,7 +111,7 @@
                 <img src="{{ asset('images/' .Auth::user()->photo) }}" alt="">
             </div>
         </div>
-        <span>{{ Auth::user()->fullname }}</span>
+        <span class="me-4">{{ Auth::user()->fullname }}</span>
         <span class="mx-4 md:block hidden"> | </span>
         <span class="me-4 md:block hidden">{{ Auth::user()->role }}</span>
     </div>

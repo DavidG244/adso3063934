@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <!-- Tailwind CDN for quick styling improvements (keeps functionality intact) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 @php
-    if(Auth::user()->role == 'Administrator'){
-        $image = 'images/so.jpg';
-    } else {
-        $image = 'images/ra.jpg';
-    }
-        
+if (Auth::user()->role == 'administrator') {
+    $image = 'images/so.jpg';
+} else {
+    $image = 'images/ra.jpg';
+}
 @endphp
-<body class="min-h-[100dvh] bg-[url('images/so.jpg')] bg-contain bg-cover bg-center bg-black w-full flex flex-col gap-4 items-center justify-center p-8 pt-20">
-    @include('layouts.navbar') 
+
+<body class="min-h-[100dvh] bg-[url({{ asset($image) }})] bg-center bg-cover bg-fixed flex flex-col gap-4 items-center justify-center w-full flex p-6 pt-20 ">
+    @include('layouts.navbar')
     @yield('content')
     @yield('js')
+
 </body>
 </html>
