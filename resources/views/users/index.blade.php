@@ -56,6 +56,8 @@
     <input type="search" required placeholder="Search" name="qsearch" />
 </label>
 
+
+
 <div class="overflow-x-auto text-white rounded-box bg-[#fff9]">
     <table class="table bg-[#0009]">
         <!-- head -->
@@ -73,9 +75,7 @@
         <tbody>
             @foreach ($users as $user)
 
-            <tr @if ($user->id % 2 == 0) class="bg-[#0006]"
-
-                @endif>
+            <tr class="{{ $user->id % 2 == 0 ? 'bg-[#0006]' : '' }}">
                 <th class="hidden md:table-cell">{{ $user->id }}</th>
                 <td>
                     <div class="avatar">
@@ -119,10 +119,37 @@
                 </td>
             </tr>
             @endforeach
-            <tr class="bg-[#0009">
+            <tr class="bg-[#0009]">
                 <td colspan="7">{{ $users->links('layouts.pagination') }}</td>
             </tr>
         </tbody>
     </table>
 </div>
+
+{{-- Modal --}}
+<dialog id="modal_message" class="modal">
+    <div class="modal-box">
+        <h3 class="text-lg font-bold">Congratulations!</h3>
+        <div role="alert" class="alert alert-success">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>{{ session('message') }}</span>
+        </div>
+    </div>
+    <form method="dialog" class="modal-backdrop">
+        <button>close</button>
+    </form>
+</dialog>
 @endsection
+
+@section('js')
+        <script>
+            $(document).ready(function (){
+                const modal_message = document.getElementById('modal_message');
+                @if(session('message'))
+                    modal_message.showModal();
+                @endif
+            })
+        </script>
+    @endsection
