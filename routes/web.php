@@ -4,6 +4,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\AdoptionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -74,19 +76,24 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resources([
         'users' => UserController::class,
-        // 'pets' =>PetController::class,
-        // 'adoptions' =>AdoptionController::class
+        'pets' => PetController::class,
+        'adoptions' => AdoptionController::class
     ]);
     // Search
     Route::post('search/users', [UserController::class, 'search']);
-    // Route::post('search/pets', [PetController::class, 'search']);
+    Route::post('search/pets', [PetController::class, 'search']);
 
     // Export
     Route::get('export/users/pdf', [UserController::class, 'pdf']);
     Route::get('export/users/excel', [UserController::class, 'excel']);
+    // Pets export
+    Route::get('export/pets/pdf', [PetController::class, 'pdf']);
+    Route::get('export/pets/excel', [PetController::class, 'excel']);
 
     // Imports
     Route::get('import/users', [UserController::class, 'import']);
+    // Pets import (form posts to this URL)
+    Route::post('import/pets', [PetController::class, 'import']);
 });
 
 require __DIR__ . '/auth.php';

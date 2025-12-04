@@ -25,7 +25,7 @@ class Adoption extends Model
 
     // Adoption belongTo pet
     public function pet() {
-    return $this->belongsTo(pet::class);
+    return $this->belongsTo(Pet::class);
     }
 
 }
