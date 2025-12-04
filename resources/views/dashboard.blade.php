@@ -170,7 +170,7 @@
                     </button>
                 </li>
             </ul>
-            <div class="card-actions justify-end">
+            <div class="card-actions justify-end" href="{{ route('adoptions.index') }}">
                 <a class="btn btn-outline hover:bg-[#fff6] hover:text-white mt-3 border">Enter ></a>
             </div>
         </div>

@@ -76,9 +76,15 @@ Route::middleware('auth')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::resources([
         'users' => UserController::class,
-        'pets' => PetController::class,
-        'adoptions' => AdoptionController::class
+        'pets' => PetController::class,       
     ]);
+
+    // Adoption 
+        Route::get('adoptions', [AdoptionController::class, 'index']);
+        Route::get('adoptions/{id}', [AdoptionController::class, 'show']);
+        Route::get('search/adoptions', [AdoptionController::class, 'search']);
+        Route::post('export/adoptions/pdf', [AdoptionController::class, 'pdf']);
+        
     // Search
     Route::post('search/users', [UserController::class, 'search']);
     Route::post('search/pets', [PetController::class, 'search']);
