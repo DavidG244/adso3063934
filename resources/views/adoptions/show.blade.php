@@ -42,88 +42,101 @@
 </div>
 
 {{-- Card --}}
-<div class="bg-[#0009] p-10 rounded-sm">
-    {{-- Photo --}}
-    <div class="avatar flex flex-row cursor-pointer hover:scale-110 transition ease-in justify-center items-center">
-        <div class="mask mask-squircle w-60">
-            <img src="{{ asset('images/' . ($adopt->pet->image ?? 'no-image.png')) }}" alt="">
-        </div>
-        <div class="mask mask-squircle w-60">
-            <img src="{{ asset('images/' . ($adopt->user->image ?? 'no-image.png')) }}" alt="">
-        </div>
-    </div>
-    {{-- Data --}}
-    <div class="flex gap-2 flex-col md:flex-row">
-        <ul class="list bg-[#0009] mt-4 text-white  rounded-box shadow-md">
-            <li class="list-row">
-                <span class="font-semibold">Document</span><span class="text-[#fff9]">{{ $adopt->user->document }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">FullName</span><span class="text-[#fff9]">{{ $adopt->user->fullname }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Gender</span><span class="text-[#fff9]">{{ $adopt->user->gender }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Birthdate</span><span class="text-[#fff9]">{{ $adopt->user->birthdate }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Phone</span><span class="text-[#fff9]">{{ $adopt->user->phone }}</span>
-            </li>
-        </ul>
+@php
+    $user = $adopt->user ?? null;
+    $pet = $adopt->pet ?? null;
+@endphp
 
-        <ul class="list bg-[#0009] mt-4 text-white  rounded-box shadow-md">
-            <li class="list-row">
-                <span class="font-semibold">Name</span><span class="text-[#fff9]">{{ $adopt->pet->name }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Kind</span><span class="text-[#fff9]">{{ $adopt->pet->kind }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Breed</span><span class="text-[#fff9]">{{ $adopt->pet->breed }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Age</span><span class="text-[#fff9]">{{ $adopt->pet->age }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Weight</span><span class="text-[#fff9]">{{ $adopt->pet->weight }}</span>
-            </li>
-        </ul>
-        <ul class="list bg-[#0009] mt-4 text-white rounded-box shadow-md">
-            <li class="list-row">
-                <span class="font-semibold">Location</span><span class="text-[#fff9]">{{ $adopt->pet->location }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Active</span>
-                <span class="text-[#fff9]"> @if ($adopt->pet->active == 1)
-                    <div class="badge badge-outline badge-success">Yes</div>
-                    @else
-                    <div class="badge badge-outline badge-error">No</div>
-                    @endif
-                </span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Status</span>
-                <span class="text-[#fff9]">@if($adopt->pet->status == 1)
-                    <div class="badge badge-outline badge-error">Adopted</div>
-                    @else
-                    <div class="badge badge-outline badge-success">Available</div>
-                    @endif</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Create At::</span><span class="text-[#fff9]">{{ $adopt->pet->created_at }}</span>
-            </li>
-            <li class="list-row">
-                <span class="font-semibold">Update At::</span><span class="text-[#fff9]">{{ $adopt->pet->updated_at }}</span>
-            </li>
-        </ul>
+<div class="bg-[#0009] p-8 rounded-sm">
+    {{-- Two columns: user left, pet right --}}
+    <div class="flex flex-col md:flex-row gap-4">
+        {{-- Left column: User (all user fields) --}}
+        <div class="md:w-1/2 bg-[#0008] p-4 rounded-md shadow-md text-white">
+            <div class="flex items-start gap-4">
+                <div class="mask mask-squircle w-36 h-36 flex-shrink-0">
+                    <img src="{{ asset('images/' . ($user->photo ?? 'no-image.png')) }}" alt="User">
+                </div>
+                <div class="flex-1">
+                    <h4 class="font-semibold text-lg">{{ $user->fullname ?? 'Sin nombre' }}</h4>
+                    <p class="text-sm text-[#fff9]">{{ $user->email ?? '' }}</p>
+                </div>
+            </div>
+
+            <ul class="mt-4 space-y-2 text-sm text-[#fff9]">
+                <li><span class="font-semibold">Document</span> <span class="float-right">{{ $user->document ?? '—' }}</span></li>
+                <li><span class="font-semibold">FullName</span> <span class="float-right">{{ $user->fullname ?? '—' }}</span></li>
+                <li><span class="font-semibold">Gender</span> <span class="float-right">{{ $user->gender ?? '—' }}</span></li>
+                <li><span class="font-semibold">Birthdate</span> <span class="float-right">{{ $user->birthdate ?? '—' }}</span></li>
+                <li><span class="font-semibold">Phone</span> <span class="float-right">{{ $user->phone ?? '—' }}</span></li>
+                <li><span class="font-semibold">Email</span> <span class="float-right">{{ $user->email ?? '—' }}</span></li>
+                <li>
+                    <span class="font-semibold">Active</span>
+                    <span class="float-right">@if($user && $user->active == 1)
+                        <div class="badge badge-outline badge-success">Active</div>
+                        @else
+                        <div class="badge badge-outline badge-error">Inactive</div>
+                        @endif
+                    </span>
+                </li>
+                <li>
+                    <span class="font-semibold">Role</span>
+                    <span class="float-right">@if(isset($user->role) && $user->role == 'Administrator')
+                        <div class="badge badge-outline badge-warning">Admin</div>
+                        @elseif(isset($user->rol) && $user->rol == 'Administrator')
+                        <div class="badge badge-outline badge-warning">Admin</div>
+                        @else
+                        <div class="badge badge-outline badge-default">Customer</div>
+                        @endif
+                    </span>
+                </li>
+                <li><span class="font-semibold">Create At::</span> <span class="float-right">{{ $user->created_at ?? '—' }}</span></li>
+                <li><span class="font-semibold">Update At::</span> <span class="float-right">{{ $user->updated_at ?? '—' }}</span></li>
+            </ul>
+        </div>
+
+        {{-- Right column: Pet (all pet fields) --}}
+        <div class="md:w-1/2 bg-[#0008] p-4 rounded-md shadow-md text-white">
+            <div class="flex items-start gap-4 justify-end md:justify-start">
+                <div class="mask mask-squircle w-36 h-36 flex-shrink-0">
+                    <img src="{{ asset('images/' . ($pet->image ?? 'no-image.png')) }}" alt="Pet">
+                </div>
+                <div class="flex-1 text-right md:text-left">
+                    <h4 class="font-semibold text-lg">{{ $pet->name ?? 'Sin nombre' }}</h4>
+                    <p class="text-sm text-[#fff9]">{{ $pet->location ?? '' }}</p>
+                </div>
+            </div>
+
+            <ul class="mt-4 space-y-2 text-sm text-[#fff9]">
+                <li><span class="font-semibold">Kind</span> <span class="float-right">{{ $pet->kind ?? '—' }}</span></li>
+                <li><span class="font-semibold">Breed</span> <span class="float-right">{{ $pet->breed ?? '—' }}</span></li>
+                <li><span class="font-semibold">Age</span> <span class="float-right">{{ $pet->age ?? '—' }}</span></li>
+                <li><span class="font-semibold">Weight</span> <span class="float-right">{{ $pet->weight ?? '—' }}</span></li>
+                <li><span class="font-semibold">Location</span> <span class="float-right">{{ $pet->location ?? '—' }}</span></li>
+                <li>
+                    <span class="font-semibold">Active</span>
+                    <span class="float-right">
+                        @if($pet && $pet->active == 1)
+                            <span class="badge badge-outline badge-success">Yes</span>
+                        @else
+                            <span class="badge badge-outline badge-error">No</span>
+                        @endif
+                    </span>
+                </li>
+                <li>
+                    <span class="font-semibold">Status</span>
+                    <span class="float-right">
+                        @if($pet && $pet->status == 1)
+                            <span class="badge badge-outline badge-error">Adopted</span>
+                        @else
+                            <span class="badge badge-outline badge-success">Available</span>
+                        @endif
+                    </span>
+                </li>
+                <li><span class="font-semibold">Created At</span> <span class="float-right">{{ $pet->created_at ?? '—' }}</span></li>
+                <li><span class="font-semibold">Updated At</span> <span class="float-right">{{ $pet->updated_at ?? '—' }}</span></li>
+                <li><span class="font-semibold">Descripcion</span> <span class="float-right">{{ $pet->description ?? '—' }}</span></li>
+            </ul>
+        </div>
     </div>
-    {{-- Description --}}
-    @if(!empty($adopt->pet->description))
-    <div class="mt-6 bg-[#0009] p-4 rounded-md text-white">
-        <h3 class="font-semibold mb-2">Description</h3>
-        <p>{{ $adopt->pet->description }}</p>
-    </div>
-    @endif
 </div>
 @endsection

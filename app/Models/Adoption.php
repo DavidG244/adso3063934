@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Adoption extends Model
 {
-        /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var list<string>
@@ -17,16 +17,32 @@ class Adoption extends Model
         'pet_id'
     ];
 
-        // RelationShips
+    // RelationShips
     // Adoption belongTo user
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     // Adoption belongTo pet
-    public function pet() {
-    return $this->belongsTo(Pet::class);
+    public function pet()
+    {
+        return $this->belongsTo(Pet::class);
     }
 
+    public function scopeNames($adoptions, $q)
+    {
+        if (trim($q)) {
+            $adoptions->where(function ($adoptions) use ($q) {
+                $adoptions->whereHas('user', function ($subquery) use ($q) {
+                    $subquery->where('fullname', 'LIKE', "%$q%")
+                        ->orWhere('email', 'LIKE', "%$q%");
+                })
+                    ->orWhereHas('pet', function ($subquery) use ($q) {
+                        $subquery->where('name', 'LIKE', "%$q%")
+                            ->orWhere('kind', 'LIKE', "%$q%");
+                    });
+            });
+        }
+    }
 }
-
