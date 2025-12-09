@@ -19,7 +19,7 @@ class UserAdmin
         if (Auth::user()->role == 'Administrator') {
             return $next($request);
         }
-        return redirect('dasboard')
+        return redirect('dashboard')
         ->with('error', 'You do not have permissions to view this content!.');
     }
 }

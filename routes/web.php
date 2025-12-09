@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AdoptionController;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -103,6 +104,17 @@ Route::middleware('auth')->group(function () {
         // Pets import (form posts to this URL)
         Route::post('import/pets', [PetController::class, 'import']);
     });
+    // CUstomer
+    Route::get('myprofile/', [CustomerController::class, 'myprofile']);
+    Route::post('myprofile/{id}', [CustomerController::class, 'updatemyprofile']);
+
+    Route::get('myadoptions/', [CustomerController::class, 'myadoptions']);
+    Route::get('myadoptions/{id}', [CustomerController::class, 'showadoption']);
+
+    Route::get('makeadoption/', [CustomerController::class, 'listpets']);
+    Route::get('makeadoption/{id}', [CustomerController::class, 'confirmadoption']);
+    Route::post('makeadoption/{id}', [CustomerController::class, 'makeadoption']);
+    Route::get('search/makeadoption/', [CustomerController::class, 'search']);
 });
 
 require __DIR__ . '/auth.php';
