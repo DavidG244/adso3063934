@@ -100,7 +100,7 @@ class UserController extends Controller
             if ($request->hasFile('photo')) {
                 $photo = time() . '.' . $request->photo->extension();
                 $request->photo->move(public_path('images'), $photo);
-                if ($request->originphoto != 'no-photo.png') {
+                if ($request->originphoto != 'no-photo.png' && file_exists(public_path('images/' . $request->originphoto))) {
                     unlink(public_path('images/') . $request->originphoto);
                 }
             } else {

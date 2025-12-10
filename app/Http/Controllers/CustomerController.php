@@ -29,7 +29,7 @@ class CustomerController extends Controller
             if ($request->hasFile('photo')) {
                 $photo = time() . '.' . $request->photo->extension();
                 $request->photo->move(public_path('images'), $photo);
-                if ($request->originphoto != 'no-photo.png') {
+                if ($request->originphoto != 'no-photo.png' && file_exists(public_path('images/' . $request->originphoto))) {
                     unlink(public_path('images/') . $request->originphoto);
                 }
             } else {
@@ -59,18 +59,47 @@ class CustomerController extends Controller
         return view('customer/showadoption')->with('adopt', $adopt);
     }
     public function listpets() {
-        $pets = Pet::where('status', 0)->orderBy('id', 'desc')->paginate(20);
+        $pets = Pet::where('status', '!=', 1)->orderBy('id', 'desc')->paginate(20);
         return view('customer/makeadoption')->with('pets', $pets);  
     }
-    public function confirmadoption(Request $request) {
-        
+    public function confirmadoption($id) {
+        $pet = Pet::find($id);
+        if (!$pet) {
+            return redirect('makeadoption/')->with('error', 'Pet not found.');
+        }
+        return view('customer/confirmadoption')->with('pet', $pet);
     }
-    public function makeadoption(Request $request) {
-        
+    public function makeadoption(Request $request, $id) {
+        $pet = Pet::find($id);
+        if (!$pet) {
+            return redirect('makeadoption/')->with('error', 'Pet not found.');
+        }
+
+        if ($pet->status == 1) {
+            return redirect('makeadoption/')->with('error', 'This pet has already been adopted.');
+        }
+
+        // create adoption record
+        $adoption = new Adoption();
+        $adoption->user_id = Auth::user()->id;
+        $adoption->pet_id = $pet->id;
+        if ($adoption->save()) {
+            // mark pet as adopted
+            $pet->status = 1;
+            $pet->save();
+            return redirect('myadoptions/')->with('message', 'Thank you! The adoption request was successful.');
+        }
+
+        return redirect('makeadoption/')->with('error', 'There was a problem processing your adoption.');
     }
     public function search(Request $request) {
-        $pets = Pet::kinds($request->q)->where('status', 0)->orderBy('created_at', 'desc')->paginate(20);
-        return view('customer/search')->with('pets', $pets);
+        $pets = Pet::names($request->q)->where('status', '!=', 1)->orderBy('id', 'desc')->paginate(20);
+        return view('pets.search')->with('pets', $pets);
+    }
+
+    public function searchMyAdoptions(Request $request) {
+        $adopts = Adoption::names($request->q)->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->get();
+        return view('adoptions.search')->with('adopts', $adopts);
     }
 
     // CUstomer

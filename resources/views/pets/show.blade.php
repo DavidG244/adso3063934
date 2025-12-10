@@ -44,33 +44,33 @@
 {{-- Card --}}
 <div class="bg-[#0009] p-10 rounded-sm">
     {{-- Photo --}}
-    <div class="avatar flex flex-col cursor-pointer hover:scale-110 transition ease-in justify-center items-center">
-        <div class="mask mask-squircle w-60">
-            <img src="{{ asset('images/' . ($pet->image ?? 'no-image.png')) }}" alt="">
+    <div class="avatar flex flex-col cursor-pointer hover:scale-110 transition ease-in justify-center items-center mb-8">
+        <div class="mask mask-squircle w-60 h-60">
+            <img src="{{ asset('images/' . ($pet->image ?? 'no-image.png')) }}" alt="" class="w-full h-full object-cover">
         </div>
     </div>
     {{-- Data --}}
-    <div class="flex gap-2 flex-col md:flex-row">
-        <ul class="list bg-[#0009] mt-4 text-white  rounded-box shadow-md">
+    <div class="flex gap-4 flex-col lg:flex-row">
+        <ul class="list bg-[#0009] text-white rounded-box shadow-md flex-1 min-w-0">
             <li class="list-row">
-                <span class="font-semibold">Name</span><span class="text-[#fff9]">{{ $pet->name }}</span>
+                <span class="font-semibold">Name</span><span class="text-[#fff9] break-words">{{ $pet->name }}</span>
             </li>
             <li class="list-row">
-                <span class="font-semibold">Kind</span><span class="text-[#fff9]">{{ $pet->kind }}</span>
+                <span class="font-semibold">Kind</span><span class="text-[#fff9] break-words">{{ $pet->kind }}</span>
             </li>
             <li class="list-row">
-                <span class="font-semibold">Breed</span><span class="text-[#fff9]">{{ $pet->breed }}</span>
+                <span class="font-semibold">Breed</span><span class="text-[#fff9] break-words">{{ $pet->breed }}</span>
             </li>
             <li class="list-row">
-                <span class="font-semibold">Age</span><span class="text-[#fff9]">{{ $pet->age }}</span>
+                <span class="font-semibold">Age</span><span class="text-[#fff9] break-words">{{ $pet->age }}</span>
             </li>
             <li class="list-row">
-                <span class="font-semibold">Weight</span><span class="text-[#fff9]">{{ $pet->weight }}</span>
+                <span class="font-semibold">Weight</span><span class="text-[#fff9] break-words">{{ $pet->weight }}</span>
             </li>
         </ul>
-        <ul class="list bg-[#0009] mt-4 text-white rounded-box shadow-md">
+        <ul class="list bg-[#0009] text-white rounded-box shadow-md flex-1 min-w-0">
             <li class="list-row">
-                <span class="font-semibold">Location</span><span class="text-[#fff9]">{{ $pet->location }}</span>
+                <span class="font-semibold">Location</span><span class="text-[#fff9] break-words">{{ $pet->location }}</span>
             </li>
             <li class="list-row">
                 <span class="font-semibold">Active</span>
@@ -90,18 +90,18 @@
                     @endif</span>
             </li>
             <li class="list-row">
-                <span class="font-semibold">Create At::</span><span class="text-[#fff9]">{{ $pet->created_at }}</span>
+                <span class="font-semibold">Create At::</span><span class="text-[#fff9] break-words text-xs">{{ $pet->created_at }}</span>
             </li>
             <li class="list-row">
-                <span class="font-semibold">Update At::</span><span class="text-[#fff9]">{{ $pet->updated_at }}</span>
+                <span class="font-semibold">Update At::</span><span class="text-[#fff9] break-words text-xs">{{ $pet->updated_at }}</span>
             </li>
         </ul>
     </div>
     {{-- Description --}}
     @if(!empty($pet->description))
-    <div class="mt-6 bg-[#0009] p-4 rounded-md text-white">
+    <div class="mt-6 bg-[#0009] p-4 rounded-md text-white min-w-0">
         <h3 class="font-semibold mb-2">Description</h3>
-        <p>{{ $pet->description }}</p>
+        <p class="break-words whitespace-normal overflow-hidden">{{ $pet->description }}</p>
     </div>
     @endif
 </div>

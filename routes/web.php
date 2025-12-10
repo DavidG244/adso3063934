@@ -115,6 +115,9 @@ Route::middleware('auth')->group(function () {
     Route::get('makeadoption/{id}', [CustomerController::class, 'confirmadoption']);
     Route::post('makeadoption/{id}', [CustomerController::class, 'makeadoption']);
     Route::get('search/makeadoption/', [CustomerController::class, 'search']);
+    // AJAX search endpoints for customers
+    Route::post('search/makeadoption', [CustomerController::class, 'search']);
+    Route::post('search/myadoptions', [CustomerController::class, 'searchMyAdoptions']);
 });
 
 require __DIR__ . '/auth.php';
